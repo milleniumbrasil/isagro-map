@@ -16,7 +16,7 @@ import EditNoteIcon from "../../components/ext/displays/IconEditNoteExt";
 import VisibilityIcon from "../../components/ext/displays/IconVisibilityExt";
 import SearchIcon from "../../components/ext/displays/IconSearchExt";
 
-export const COMMIT_HASH: string = "85648d6b508218af893932277e8750caa8cdcf20";
+export const COMMIT_HASH: string = "08aae08f2e452524e441c51879a03b15f5b42b1e";
 
 export interface DrawerItemsType {
   id: string;

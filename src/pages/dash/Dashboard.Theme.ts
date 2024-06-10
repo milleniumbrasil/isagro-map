@@ -1,5 +1,5 @@
 
-// src/pages/login/LoginPaper.Theme.ts
+// src/pages/dash/Dashboard.Theme.ts
 
 import { Theme } from "../../components/ext/styles/StylesExt";
 
