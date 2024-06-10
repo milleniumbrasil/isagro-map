@@ -1,5 +1,6 @@
-# ISAgro-template
-Repositorio template para o projeto ISAGRO Dashboards.
+# ISAgro-map
+
+Repositorio do componente de mapa para o projeto ISAGRO Dashboards.
 
 # Elementos principais
 
