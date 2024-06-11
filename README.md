@@ -19,9 +19,8 @@ O componente mapa é baseado no framework [https://leafletjs.com](https://react-
  
 ## Anatomia do componente Mapa
 
-
-    - O componente deve observar a posição para atualizar uma variável `posicao={}` , que deve ser exposta na declaração do próprio componente;
-    - Todos os demais parâmetros devem ser informados por um atributo `config={}`, que deve ser um objeto único, definido com interface;
+- O componente deve observar a posição para atualizar uma variável `posicao={}` , que deve ser exposta na declaração do próprio componente;
+- Todos os demais parâmetros devem ser informados por um atributo `config={}`, que deve ser um objeto único, definido com interface;
 
 ```typescript
 
