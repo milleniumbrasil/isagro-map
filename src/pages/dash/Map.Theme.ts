@@ -1,5 +1,5 @@
 
-// src/pages/dash/Dashboard.Theme.ts
+// src/pages/dash/Map.Theme.ts
 
 import { Theme } from "../../components/ext/styles/StylesExt";
 

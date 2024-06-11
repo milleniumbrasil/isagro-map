@@ -1,18 +1,18 @@
 
-// src/pages/dash/Dashboard.Form.tsx
+// src/pages/dash/Map.tsx
 
 import * as React from "react";
-import { DashboardTheme } from "./Dashboard.Theme";
+import { DashboardTheme } from "./Map.Theme";
 import { MapContainer, Marker, Popup } from 'react-leaflet';
 import { useTheme } from "../../components/ext/styles/StylesExt";
 import Paper from "../../components/ext/surfaces/PaperExt";
-import { CRS } from "leaflet";
+import { CRS, LatLngTuple } from "leaflet";
 import CustomTileLayer from "./CustomTileLayer";
 import CustomTileLayerProps from "./CustomTileLayerProps";
 
 console.log(`[Dashboard]: Loaded imports`);
 
-const Dashboard: React.FC<any> = () => {
+const Map: React.FC<any> = () => {
   const currentTheme = useTheme();
   const paperStyles = DashboardTheme(currentTheme);
 
@@ -34,14 +34,19 @@ const Dashboard: React.FC<any> = () => {
     customParams: {}
   };
 
+  const center: LatLngTuple = [51.505, -0.09];
+  const zoom = 6;
+  const position: LatLngTuple = [51.505, -0.09];
+  const content = 'A pretty CSS3 popup. <br /> Easily customizable.';
+
   console.log("Dashboard component is rendering");
   return (
     <Paper sx={paperStyles} elevation={3}>
-      <MapContainer center={[51.505, -0.09]} zoom={6} scrollWheelZoom={true}>
+      <MapContainer center={center} zoom={zoom} scrollWheelZoom={true}>
         <CustomTileLayer {...params} />
-        <Marker position={[51.505, -0.09]}>
+        <Marker position={position}>
           <Popup>
-            A pretty CSS3 popup. <br /> Easily customizable.
+            {content}
           </Popup>
         </Marker>
       </MapContainer>
@@ -49,4 +54,4 @@ const Dashboard: React.FC<any> = () => {
   );
 };
 
-export default Dashboard;
+export default Map;

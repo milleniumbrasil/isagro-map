@@ -4,7 +4,7 @@
 import theme from "./theme";
 import { ThemeProvider } from "./components/ext/styles/StylesExt";
 import { MemoryRouter, Routes, Route } from "react-router-dom";
-import Dashboard from "./pages/dash/Dashboard.Form";
+import Dashboard from "./pages/dash/Map";
 import { AuthProvider } from "./pages/common/AuthContext";
 
 console.log(`The router.tsx loaded all imported files.`);
