@@ -22,6 +22,7 @@ O componente mapa é baseado no framework [https://leafletjs.com](https://react-
 - O componente deve observar a posição para atualizar uma variável `posicao={}` , que deve ser exposta na declaração do próprio componente;
 - Todos os demais parâmetros devem ser informados por um atributo `config={}`, que deve ser um objeto único, definido com interface;
 
+#### Parametros esperados
 ```typescript
 
     // TODO: Os valores abaixo são apenas um exemplo e devem ser substituidos por valores reais, obtidos do servidor (mock).
@@ -44,7 +45,9 @@ O componente mapa é baseado no framework [https://leafletjs.com](https://react-
 
     const [position, setPosition] = useState([51.505, -0.09]);
     const [config, setConfig] = useState(responseBody);
-
+```
+#### Anatomia esperada
+```typescript
     <Map posicao={position} config={config} />
 ```
 
