@@ -2,8 +2,9 @@
 // isgagro-map/src/Mapa.tsx
 
 import { useState } from 'react';
-import { Map } from "pigeon-maps";
+import { Map, ZoomControl, Marker, Draggable } from "pigeon-maps";
 import { TileLayerConfig } from "./interfaces";
+import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 
 interface MapaProps {
   config: TileLayerConfig;
@@ -74,6 +75,9 @@ function Mapa({ config }: MapaProps) {
   const [currentCenter, setCenter] = useState(center);
   const [currentZoom, setZoom] = useState(zoom);
 
+  const [hue, setHue] = useState(0);
+  const color = `hsl(${hue % 360}deg 39% 70%)`;
+
   return (
     <Map
       provider={() => wmsUrl}
@@ -87,7 +91,12 @@ function Mapa({ config }: MapaProps) {
         setCenter(center); 
         setZoom(zoom); 
       }} 
-    />
+    >
+      <ZoomControl />
+      <Draggable offset={[60, 87]} anchor={currentCenter} onDragEnd={setCenter}>
+        <PersonPinCircleIcon />
+      </Draggable>
+    </Map>
   );
 }
 
