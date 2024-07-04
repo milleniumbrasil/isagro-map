@@ -98,3 +98,4 @@ EXCEPTIONS: application/vnd.ogc.se_xml
 FORMAT: image/png
 BGCOLOR: 0xFEFFFF
 TRANSPARENT: TRUE
+
