@@ -1,6 +1,6 @@
 {
   "name": "isgagro-map",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": false,
   "dependencies": {
     "@emotion/react": "^11.11.4",
