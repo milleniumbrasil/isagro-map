@@ -47,7 +47,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/milleniumbrasil/isagro-map.git"
+    "url": "git+https://github.com/milleniumbrasil/isagro-map.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "keywords": [
     "map",
