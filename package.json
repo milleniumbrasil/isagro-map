@@ -1,5 +1,5 @@
 {
-  "name": "isgagro-map",
+  "name": "@milleniumbrasil/isgagro-map",
   "version": "1.0.0",
   "private": false,
   "dependencies": {
