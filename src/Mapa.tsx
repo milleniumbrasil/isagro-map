@@ -1,12 +1,36 @@
 
-// isgagro-map/src/Mapa.tsx
-
 import { useState } from 'react';
+import { Map, ZoomControl, Marker, Draggable } from "pigeon-maps";
+import { TileLayerConfig } from "./interfaces";
+import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 import { Map } from "pigeon-maps";
 import { TileLayerConfig } from "./interfaces";
 
 interface MapaProps {
   config: TileLayerConfig;
+}
+function calculateZoomFromBBox(bbox: string): number {
+  const [minX, minY, maxX, maxY] = bbox.split(',').map(Number);
+  const WORLD_DIM = { width: 256, height: 256 };
+  const ZOOM_MAX = 21;
+
+  function latRad(lat: number) {
+    const sin = Math.sin((lat * Math.PI) / 180);
+    const radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
+    return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
+  }
+
+  function zoom(mapPx: number, worldPx: number, fraction: number) {
+    return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
+  }
+
+  const latFraction = (latRad(maxY) - latRad(minY)) / Math.PI;
+  const lngDiff = maxX - minX;
+  const lngFraction = lngDiff < 0 ? lngDiff + 360 : lngDiff / 360;
+  const latZoom = zoom(WORLD_DIM.height, 256, latFraction);
+  const lngZoom = zoom(WORLD_DIM.width, 256, lngFraction);
+
+  return Math.min(latZoom, lngZoom, ZOOM_MAX);
 }
 
 function Mapa({ config }: MapaProps) {
@@ -74,6 +98,9 @@ function Mapa({ config }: MapaProps) {
   const [currentCenter, setCenter] = useState(center);
   const [currentZoom, setZoom] = useState(zoom);
 
+  const [hue, setHue] = useState(0);
+  const color = `hsl(${hue % 360}deg 39% 70%)`;
+
   return (
     <Map
       provider={() => wmsUrl}
@@ -87,7 +114,12 @@ function Mapa({ config }: MapaProps) {
         setCenter(center); 
         setZoom(zoom); 
       }} 
-    />
+    >
+      <ZoomControl />
+      <Draggable offset={[60, 87]} anchor={currentCenter} onDragEnd={setCenter}>
+        <PersonPinCircleIcon />
+      </Draggable>
+    </Map>
   );
 }
 
