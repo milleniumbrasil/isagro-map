@@ -1,10 +1,8 @@
 
 import { useState } from 'react';
-import { Map, ZoomControl, Marker, Draggable } from "pigeon-maps";
+import { Map, ZoomControl, Draggable } from "pigeon-maps";
 import { TileLayerConfig } from "./interfaces";
 import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
-import { Map } from "pigeon-maps";
-import { TileLayerConfig } from "./interfaces";
 
 interface MapaProps {
   config: TileLayerConfig;
