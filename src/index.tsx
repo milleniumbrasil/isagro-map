@@ -123,3 +123,5 @@ function Mapa({ config }: MapaProps) {
 }
 
 export default Mapa;
+// src/index.tsx
+export { default as Mapa } from './Mapa';
