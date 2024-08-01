@@ -3,7 +3,7 @@
 
 import { useState } from 'react';
 import './App.css';
-import { TileLayerConfig } from "./interfaces";
+import { TileLayerConfig } from "./imapa";
 import Mapa from "./Mapa";
 import { states } from "./states";
 

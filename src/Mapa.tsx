@@ -1,12 +1,13 @@
 
 import { useState } from 'react';
 import { Map, ZoomControl, Draggable } from "pigeon-maps";
-import { TileLayerConfig } from "./interfaces";
+import { TileLayerConfig } from "./imapa";
 import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 
-interface MapaProps {
+export interface MapaProps {
   config: TileLayerConfig;
 }
+
 function calculateZoomFromBBox(bbox: string): number {
   const [minX, minY, maxX, maxY] = bbox.split(',').map(Number);
   const WORLD_DIM = { width: 256, height: 256 };
