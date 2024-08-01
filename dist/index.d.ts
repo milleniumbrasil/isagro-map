@@ -4,3 +4,4 @@ export interface MapaProps {
 }
 declare function Mapa({ config }: MapaProps): import("react/jsx-runtime").JSX.Element;
 export default Mapa;
+export { default as Mapa } from './Mapa';

@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Mapa = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = require("react");
 var pigeon_maps_1 = require("pigeon-maps");
@@ -75,3 +76,6 @@ function Mapa(_a) {
         }, children: [(0, jsx_runtime_1.jsx)(pigeon_maps_1.ZoomControl, {}), (0, jsx_runtime_1.jsx)(pigeon_maps_1.Draggable, { offset: [60, 87], anchor: currentCenter, onDragEnd: setCenter, children: (0, jsx_runtime_1.jsx)(PersonPinCircle_1.default, {}) })] }));
 }
 exports.default = Mapa;
+// src/index.tsx
+var Mapa_1 = require("./Mapa");
+Object.defineProperty(exports, "Mapa", { enumerable: true, get: function () { return __importDefault(Mapa_1).default; } });
