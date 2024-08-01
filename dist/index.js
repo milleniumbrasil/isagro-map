@@ -7,7 +7,6 @@ exports.Mapa = void 0;
 var jsx_runtime_1 = require("react/jsx-runtime");
 var react_1 = __importDefault(require("react"));
 var client_1 = __importDefault(require("react-dom/client"));
-require("./index.css");
 var reportWebVitals_1 = __importDefault(require("./reportWebVitals"));
 var Mapa_1 = require("./Mapa");
 Object.defineProperty(exports, "Mapa", { enumerable: true, get: function () { return __importDefault(Mapa_1).default; } });

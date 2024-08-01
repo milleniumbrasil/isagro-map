@@ -21,10 +21,15 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "tsc",
+    "build": "tsc && npm run copy-css",
     "prepublishOnly": "npm run build",
+    "copy-css": "cpx src/**/*.css dist/",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "publish:patch": "npm version patch && npm publish",
+    "publish:minor": "npm version minor && npm publish",
+    "publish:major": "npm version major && npm publish",
+    "patch": "git add . && git commit -m \"patch\" && npm version patch && npm run build && npm publish"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
