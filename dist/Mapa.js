@@ -15,6 +15,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var jsx_runtime_1 = require("react/jsx-runtime");
+// src/Mapa.tsx
 var react_1 = require("react");
 var pigeon_maps_1 = require("pigeon-maps");
 var PersonPinCircle_1 = __importDefault(require("@mui/icons-material/PersonPinCircle"));
@@ -68,6 +69,12 @@ function Mapa(_a) {
     var _q = (0, react_1.useState)(zoom), currentZoom = _q[0], setZoom = _q[1];
     var _r = (0, react_1.useState)(0), hue = _r[0], setHue = _r[1];
     var color = "hsl(".concat(hue % 360, "deg 39% 70%)");
+    (0, react_1.useEffect)(function () {
+        setZoom(zoom);
+    }, [zoom]);
+    (0, react_1.useEffect)(function () {
+        setCenter(getCenterFromBBox(bbox));
+    }, [bbox]);
     return ((0, jsx_runtime_1.jsxs)(pigeon_maps_1.Map, { provider: function () { return wmsUrl; }, dprs: [1, 2], height: height, width: width, center: currentCenter, defaultCenter: defaultCenter, zoom: currentZoom, onBoundsChanged: function (_a) {
             var center = _a.center, zoom = _a.zoom;
             setCenter(center);
