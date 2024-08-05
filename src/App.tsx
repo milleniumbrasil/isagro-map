@@ -123,7 +123,7 @@ function App() {
         </label>
       </div>
       <div className="map-container">
-        <Mapa config={tileLayerConfig} />
+        <Mapa config={tileLayerConfig} onConfigChange={() => {}}/>
       </div>
     </div>
     );
