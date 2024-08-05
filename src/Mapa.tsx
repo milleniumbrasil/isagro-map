@@ -1,5 +1,6 @@
 
 // src/Mapa.tsx
+
 import { useEffect, useState } from 'react';
 import { Map, ZoomControl, Draggable } from "pigeon-maps";
 import { TileLayerConfig } from "./imapa";
@@ -108,7 +109,7 @@ function Mapa({ config }: MapaProps) {
   useEffect(() => {
     setCenter(getCenterFromBBox(bbox));
   }, [bbox]);
-  
+
   return (
     <Map
       provider={() => wmsUrl}
