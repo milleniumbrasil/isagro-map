@@ -101,14 +101,11 @@ function Mapa({ config }: MapaProps) {
 
   const [hue, setHue] = useState(0);
   const color = `hsl(${hue % 360}deg 39% 70%)`;
-
+  
   useEffect(() => {
-    setZoom(zoom);
-  }, [zoom]);
-
-  useEffect(() => {
-    setCenter(getCenterFromBBox(bbox));
-  }, [bbox]);
+    setZoom(config.zoom || 6); // Atualize o estado do zoom quando a configuração mudar
+    setCenter(getCenterFromBBox(config.bbox)); // Atualize o centro quando a configuração mudar
+  }, [config]);
 
   return (
     <Map
