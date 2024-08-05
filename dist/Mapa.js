@@ -70,11 +70,9 @@ function Mapa(_a) {
     var _r = (0, react_1.useState)(0), hue = _r[0], setHue = _r[1];
     var color = "hsl(".concat(hue % 360, "deg 39% 70%)");
     (0, react_1.useEffect)(function () {
-        setZoom(zoom);
-    }, [zoom]);
-    (0, react_1.useEffect)(function () {
-        setCenter(getCenterFromBBox(bbox));
-    }, [bbox]);
+        setZoom(config.zoom || 6); // Atualize o estado do zoom quando a configuração mudar
+        setCenter(getCenterFromBBox(config.bbox)); // Atualize o centro quando a configuração mudar
+    }, [config]);
     return ((0, jsx_runtime_1.jsxs)(pigeon_maps_1.Map, { provider: function () { return wmsUrl; }, dprs: [1, 2], height: height, width: width, center: currentCenter, defaultCenter: defaultCenter, zoom: currentZoom, onBoundsChanged: function (_a) {
             var center = _a.center, zoom = _a.zoom;
             setCenter(center);

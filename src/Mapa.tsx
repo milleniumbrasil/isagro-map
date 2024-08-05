@@ -101,8 +101,13 @@ function Mapa({ config }: MapaProps) {
 
   const [hue, setHue] = useState(0);
   const color = `hsl(${hue % 360}deg 39% 70%)`;
-  
+
+// src/Mapa.tsx
+
   useEffect(() => {
+    console.log('Config zoom:', config.zoom);
+    console.log('Config bbox:', config.bbox);
+    
     setZoom(config.zoom || 6); // Atualize o estado do zoom quando a configuração mudar
     setCenter(getCenterFromBBox(config.bbox)); // Atualize o centro quando a configuração mudar
   }, [config]);
