@@ -8,33 +8,34 @@ import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
 
 export interface MapaProps {
   config: TileLayerConfig;
+  onConfigChange: (config: TileLayerConfig) => void; 
 }
 
-function calculateZoomFromBBox(bbox: string): number {
-  const [minX, minY, maxX, maxY] = bbox.split(',').map(Number);
-  const WORLD_DIM = { width: 256, height: 256 };
-  const ZOOM_MAX = 21;
+// function calculateZoomFromBBox(bbox: string): number {
+//   const [minX, minY, maxX, maxY] = bbox.split(',').map(Number);
+//   const WORLD_DIM = { width: 256, height: 256 };
+//   const ZOOM_MAX = 21;
 
-  function latRad(lat: number) {
-    const sin = Math.sin((lat * Math.PI) / 180);
-    const radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
-    return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
-  }
+//   function latRad(lat: number) {
+//     const sin = Math.sin((lat * Math.PI) / 180);
+//     const radX2 = Math.log((1 + sin) / (1 - sin)) / 2;
+//     return Math.max(Math.min(radX2, Math.PI), -Math.PI) / 2;
+//   }
 
-  function zoom(mapPx: number, worldPx: number, fraction: number) {
-    return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
-  }
+//   function zoom(mapPx: number, worldPx: number, fraction: number) {
+//     return Math.floor(Math.log(mapPx / worldPx / fraction) / Math.LN2);
+//   }
 
-  const latFraction = (latRad(maxY) - latRad(minY)) / Math.PI;
-  const lngDiff = maxX - minX;
-  const lngFraction = lngDiff < 0 ? lngDiff + 360 : lngDiff / 360;
-  const latZoom = zoom(WORLD_DIM.height, 256, latFraction);
-  const lngZoom = zoom(WORLD_DIM.width, 256, lngFraction);
+//   const latFraction = (latRad(maxY) - latRad(minY)) / Math.PI;
+//   const lngDiff = maxX - minX;
+//   const lngFraction = lngDiff < 0 ? lngDiff + 360 : lngDiff / 360;
+//   const latZoom = zoom(WORLD_DIM.height, 256, latFraction);
+//   const lngZoom = zoom(WORLD_DIM.width, 256, lngFraction);
 
-  return Math.min(latZoom, lngZoom, ZOOM_MAX);
-}
+//   return Math.min(latZoom, lngZoom, ZOOM_MAX);
+// }
 
-function Mapa({ config }: MapaProps) {
+function Mapa({ config, onConfigChange }: MapaProps) {
   const {
     layers = "CCAR:BCIM_Unidade_Federacao_A",
     styles = "",
@@ -102,15 +103,24 @@ function Mapa({ config }: MapaProps) {
   const [hue, setHue] = useState(0);
   const color = `hsl(${hue % 360}deg 39% 70%)`;
 
-// src/Mapa.tsx
+  useEffect(() => {
+    console.log('Config zoom:', zoom);
+    console.log('Config bbox:', bbox);
+    setZoom(zoom);
+  }, [zoom]);
 
   useEffect(() => {
-    console.log('Config zoom:', config.zoom);
-    console.log('Config bbox:', config.bbox);
-    
-    setZoom(config.zoom || 6); // Atualize o estado do zoom quando a configuração mudar
-    setCenter(getCenterFromBBox(config.bbox)); // Atualize o centro quando a configuração mudar
-  }, [config]);
+    console.log('Config bbox:', bbox);
+    setCenter(getCenterFromBBox(bbox));
+  }, [bbox]);
+
+  const handleBoundsChange = ({ center, zoom }: { center: [number, number]; zoom: number }) => {
+    console.log('Bounds changed - center:', center);
+    console.log('Bounds changed - zoom:', zoom);
+    setCenter(center); 
+    setZoom(zoom); 
+    onConfigChange({ ...config, zoom });  // Atualiza o estado no componente pai
+  };
 
   return (
     <Map
@@ -121,18 +131,10 @@ function Mapa({ config }: MapaProps) {
       center={currentCenter}
       defaultCenter={defaultCenter}
       zoom={currentZoom} 
-      onBoundsChanged={({ center, zoom }) => { 
-        console.log('Bounds changed - center:', center);
-        console.log('Bounds changed - zoom:', zoom);
-        setCenter(center); 
-        setZoom(zoom); 
-      }} 
+      onBoundsChanged={handleBoundsChange} 
     >
       <ZoomControl />
-      <Draggable offset={[60, 87]} anchor={currentCenter} onDragEnd={(pos) => {
-          console.log('Draggable - new position:', pos);
-          setCenter(pos);
-        }}>
+      <Draggable offset={[60, 87]} anchor={currentCenter} onDragEnd={setCenter}>
         <PersonPinCircleIcon />
       </Draggable>
     </Map>

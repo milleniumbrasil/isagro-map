@@ -82,6 +82,9 @@ function Mapa(_a) {
             console.log('Bounds changed - zoom:', zoom);
             setCenter(center);
             setZoom(zoom);
-        }, children: [(0, jsx_runtime_1.jsx)(pigeon_maps_1.ZoomControl, {}), (0, jsx_runtime_1.jsx)(pigeon_maps_1.Draggable, { offset: [60, 87], anchor: currentCenter, onDragEnd: setCenter, children: (0, jsx_runtime_1.jsx)(PersonPinCircle_1.default, {}) })] }));
+        }, children: [(0, jsx_runtime_1.jsx)(pigeon_maps_1.ZoomControl, {}), (0, jsx_runtime_1.jsx)(pigeon_maps_1.Draggable, { offset: [60, 87], anchor: currentCenter, onDragEnd: function (pos) {
+                    console.log('Draggable - new position:', pos);
+                    setCenter(pos);
+                }, children: (0, jsx_runtime_1.jsx)(PersonPinCircle_1.default, {}) })] }));
 }
 exports.default = Mapa;
