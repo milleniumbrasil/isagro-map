@@ -78,6 +78,8 @@ function Mapa(_a) {
     }, [config]);
     return ((0, jsx_runtime_1.jsxs)(pigeon_maps_1.Map, { provider: function () { return wmsUrl; }, dprs: [1, 2], height: height, width: width, center: currentCenter, defaultCenter: defaultCenter, zoom: currentZoom, onBoundsChanged: function (_a) {
             var center = _a.center, zoom = _a.zoom;
+            console.log('Bounds changed - center:', center);
+            console.log('Bounds changed - zoom:', zoom);
             setCenter(center);
             setZoom(zoom);
         }, children: [(0, jsx_runtime_1.jsx)(pigeon_maps_1.ZoomControl, {}), (0, jsx_runtime_1.jsx)(pigeon_maps_1.Draggable, { offset: [60, 87], anchor: currentCenter, onDragEnd: setCenter, children: (0, jsx_runtime_1.jsx)(PersonPinCircle_1.default, {}) })] }));

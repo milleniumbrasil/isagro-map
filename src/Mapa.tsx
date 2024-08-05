@@ -129,7 +129,10 @@ function Mapa({ config }: MapaProps) {
       }} 
     >
       <ZoomControl />
-      <Draggable offset={[60, 87]} anchor={currentCenter} onDragEnd={setCenter}>
+      <Draggable offset={[60, 87]} anchor={currentCenter} onDragEnd={(pos) => {
+          console.log('Draggable - new position:', pos);
+          setCenter(pos);
+        }}>
         <PersonPinCircleIcon />
       </Draggable>
     </Map>
