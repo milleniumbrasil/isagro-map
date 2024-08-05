@@ -122,6 +122,8 @@ function Mapa({ config }: MapaProps) {
       defaultCenter={defaultCenter}
       zoom={currentZoom} 
       onBoundsChanged={({ center, zoom }) => { 
+        console.log('Bounds changed - center:', center);
+        console.log('Bounds changed - zoom:', zoom);
         setCenter(center); 
         setZoom(zoom); 
       }} 

@@ -69,7 +69,10 @@ function Mapa(_a) {
     var _q = (0, react_1.useState)(zoom), currentZoom = _q[0], setZoom = _q[1];
     var _r = (0, react_1.useState)(0), hue = _r[0], setHue = _r[1];
     var color = "hsl(".concat(hue % 360, "deg 39% 70%)");
+    // src/Mapa.tsx
     (0, react_1.useEffect)(function () {
+        console.log('Config zoom:', config.zoom);
+        console.log('Config bbox:', config.bbox);
         setZoom(config.zoom || 6); // Atualize o estado do zoom quando a configuração mudar
         setCenter(getCenterFromBBox(config.bbox)); // Atualize o centro quando a configuração mudar
     }, [config]);
