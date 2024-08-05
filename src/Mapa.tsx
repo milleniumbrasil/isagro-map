@@ -1,5 +1,6 @@
 
-import { useState } from 'react';
+// src/Mapa.tsx
+import { useEffect, useState } from 'react';
 import { Map, ZoomControl, Draggable } from "pigeon-maps";
 import { TileLayerConfig } from "./imapa";
 import PersonPinCircleIcon from '@mui/icons-material/PersonPinCircle';
@@ -100,6 +101,14 @@ function Mapa({ config }: MapaProps) {
   const [hue, setHue] = useState(0);
   const color = `hsl(${hue % 360}deg 39% 70%)`;
 
+  useEffect(() => {
+    setZoom(zoom);
+  }, [zoom]);
+
+  useEffect(() => {
+    setCenter(getCenterFromBBox(bbox));
+  }, [bbox]);
+  
   return (
     <Map
       provider={() => wmsUrl}
